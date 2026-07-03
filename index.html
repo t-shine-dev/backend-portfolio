@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temitope Olawuyi | Backend Developer (T SHINE)</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+  <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        python: '#3776AB',
+                        flask: '#000000',
+                        django: '#092E20',
+                        postgres: '#336791',
+                        sql: '#F29111',
+                        fastapi: '#009688',
+                        restapi: '#FF6C37',
+                        dark: '#0f172a',
+                        darker: '#020617',
+                        whatsapp: '#25D366',
+                        linkedin: '#0A66C2',
+                    },
+                    screens: {
+                        'xs': '475px',
+                        'sm': '640px',
+                        'md': '768px',
+                        'lg': '1024px',
+                        'xl': '1280px',
+                        '2xl': '1536px',
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out forwards',
+                        'slide-in-right': 'slideInRight 0.8s ease-out forwards',
+                        'scale-in': 'scaleIn 0.6s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.9)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-darker text-slate-300 font-sans overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-dark/90 backdrop-blur-md border-b border-slate-800" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 reveal-item">
+                    <span class="font-mono text-2xl font-bold text-white">
+                        <span class="text-python">T</span>
+                        <span class="text-django">_</span>
+                        <span class="text-postgres">SHINE</span>
+                        <span class="text-fastapi">.py</span>
+                    </span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="nav-link text-sm font-medium text-slate-400 hover:text-white transition-colors reveal-item delay-100">Home</a>
+                    <a href="#about" class="nav-link text-sm font-medium text-slate-400 hover:text-white transition-colors reveal-item delay-200">About</a>
+                    <a href="#tech-stack" class="nav-link text-sm font-medium text-slate-400 hover:text-white transition-colors reveal-item delay-300">Tech Stack</a>
+                    <a href="#projects" class="nav-link text-sm font-medium text-slate-400 hover:text-white transition-colors reveal-item delay-400">Projects</a>
+                    <a href="https://wa.me/2348108607409" target="_blank" rel="noopener" class="nav-link text-sm font-medium text-[#25D366] hover:text-white transition-colors reveal-item delay-450 flex items-center gap-1.5">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+                    </a>
+                    <a href="#contact" class="px-6 py-2.5 bg-fastapi text-white text-sm font-medium rounded-lg hover:bg-opacity-90 transition-all reveal-item delay-500">
+                        Contact Me
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-400 hover:text-white focus:outline-none p-2">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <!-- Mobile Menu - Fixed with proper background -->
+    <div class="mobile-menu fixed top-0 right-0 h-full w-80 bg-dark/95 backdrop-blur-xl border-l border-slate-700 md:hidden z-50 p-8 shadow-2xl" id="mobile-menu">
+    <!-- Close button with better styling -->
+<button id="close-menu" class="absolute top-6 right-6 text-slate-400 hover:text-white bg-slate-800/90 hover:bg-fastapi/30 p-3 rounded-lg transition-all z-[1001] cursor-pointer border border-slate-600 hover:border-fastapi shadow-lg" style="pointer-events: auto;">
+    <i data-lucide="x" class="w-5 h-5"></i>
+</button>
+    
+    <!-- Menu header -->
+    <div class="mb-8 mt-4">
+        <span class="font-mono text-2xl font-bold text-white">
+            <span class="text-python">T</span>
+            <span class="text-django">_</span>
+            <span class="text-postgres">SHINE</span>
+            <span class="text-fastapi">.py</span>
+        </span>
+        <p class="text-xs text-slate-500 mt-2 font-mono">Backend Developer</p>
+    </div>
+    
+    <!-- Menu links with better styling -->
+    <div class="flex flex-col space-y-3">
+        <a href="#home" class="mobile-link text-lg font-mono text-slate-300 hover:text-white hover:bg-fastapi/10 px-4 py-3 rounded-lg transition-all flex items-center gap-3">
+            <i data-lucide="terminal" class="w-5 h-5 text-fastapi"></i>
+            <span>Home</span>
+        </a>
+        <a href="#about" class="mobile-link text-lg font-mono text-slate-300 hover:text-white hover:bg-fastapi/10 px-4 py-3 rounded-lg transition-all flex items-center gap-3">
+            <i data-lucide="user" class="w-5 h-5 text-fastapi"></i>
+            <span>About</span>
+        </a>
+        <a href="#tech-stack" class="mobile-link text-lg font-mono text-slate-300 hover:text-white hover:bg-fastapi/10 px-4 py-3 rounded-lg transition-all flex items-center gap-3">
+            <i data-lucide="code-2" class="w-5 h-5 text-fastapi"></i>
+            <span>Tech Stack</span>
+        </a>
+        <a href="#projects" class="mobile-link text-lg font-mono text-slate-300 hover:text-white hover:bg-fastapi/10 px-4 py-3 rounded-lg transition-all flex items-center gap-3">
+            <i data-lucide="folder-git-2" class="w-5 h-5 text-fastapi"></i>
+            <span>Projects</span>
+        </a>
+        <a href="#contact" class="mobile-link text-lg font-mono text-slate-300 hover:text-white hover:bg-fastapi/10 px-4 py-3 rounded-lg transition-all flex items-center gap-3">
+            <i data-lucide="mail" class="w-5 h-5 text-fastapi"></i>
+            <span>Contact</span>
+        </a>
+        <a href="https://wa.me/2348108607409" target="_blank" rel="noopener" class="mobile-link text-lg font-mono text-slate-300 hover:text-white hover:bg-[#25D366]/10 px-4 py-3 rounded-lg transition-all flex items-center gap-3">
+            <i data-lucide="message-circle" class="w-5 h-5 text-[#25D366]"></i>
+            <span>WhatsApp Me</span>
+        </a>
+    </div>
+    
+    <!-- Social links or additional info (optional) -->
+    <div class="absolute bottom-8 left-8 right-8">
+        <div class="border-t border-slate-700 pt-4">
+            <p class="text-xs text-slate-500 font-mono text-center">Let's build something amazing</p>
+            <div class="flex justify-center gap-4 mt-3">
+                <a href="https://wa.me/2348108607409?text=Hi%20Temitope%2C%20I%20saw%20your%20portfolio!" target="_blank" rel="noopener" title="WhatsApp" style="color:#25D366;">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/temitopeolawuyi-dev" target="_blank" rel="noopener" title="LinkedIn" style="color:#0A66C2;">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </a>
+                <a href="mailto:Tshine311@gmail.com" title="Gmail" style="color:#EA4335;">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center relative overflow-hidden pt-20">
+        <!-- Background Grid -->
+        <div class="absolute inset-0 -z-10 opacity-20">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, #009688 1px, transparent 0); background-size: 40px 40px;"></div>
+        </div>
+
+        <!-- Floating Tech Badges -->
+        <div class="absolute top-32 left-10 float-badge reveal-scale delay-300 hidden lg:block">
+            <div class="bg-fastapi/20 backdrop-blur-md border border-fastapi/30 px-4 py-2 rounded-full">
+                <span class="font-mono text-fastapi text-sm">FastAPI 0.104</span>
+            </div>
+        </div>
+        <div class="absolute top-48 right-20 float-badge reveal-scale delay-500 hidden lg:block" style="animation-delay: 1s;">
+            <div class="bg-django/20 backdrop-blur-md border border-django/30 px-4 py-2 rounded-full">
+                <span class="font-mono text-django text-sm">Django 5.0</span>
+            </div>
+        </div>
+        <div class="absolute bottom-32 left-20 float-badge reveal-scale delay-700 hidden lg:block" style="animation-delay: 2s;">
+            <div class="bg-postgres/20 backdrop-blur-md border border-postgres/30 px-4 py-2 rounded-full">
+                <span class="font-mono text-postgres text-sm">PostgreSQL 16</span>
+            </div>
+        </div>
+        <div class="absolute top-64 right-10 float-badge reveal-scale delay-600 hidden lg:block" style="animation-delay: 1.5s;">
+            <div class="bg-restapi/20 backdrop-blur-md border border-restapi/30 px-4 py-2 rounded-full">
+                <span class="font-mono text-restapi text-sm">REST API</span>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="space-y-8">
+                    <div class="space-y-4">
+                        <div class="reveal-item">
+                            <span class="inline-block px-4 py-1.5 bg-fastapi/10 border border-fastapi/20 rounded-full text-fastapi font-mono text-sm">
+                                Backend Developer
+                            </span>
+                        </div>
+                        
+                        <h1 class="font-mono text-4xl md:text-6xl font-bold text-white leading-tight">
+                            <span class="reveal-item block delay-100">Hi, I'm</span>
+                            <span class="reveal-item block delay-200 text-fastapi typing-cursor">Temitope Olawuyi</span>
+                            <!-- <span class="reveal-item block delay-300 text-2xl md:text-3xl text-slate-400 mt-2">aka "T SHINE"</span> -->
+                        </h1>
+                        
+                        <p class="text-lg text-slate-400 max-w-lg leading-relaxed reveal-item delay-400">
+                            I build robust, scalable backend systems with Python. Specializing in FastAPI, Django, Flask, REST APIs, and database architecture with PostgreSQL & SQL.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-4 reveal-item delay-500">
+                        <a href="#projects" class="px-8 py-4 bg-fastapi text-white font-mono font-medium rounded-lg hover:bg-opacity-90 transition-all flex items-center gap-2 group">
+                            View Projects
+                            <i data-lucide="terminal" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="#contact" class="px-8 py-4 border border-slate-700 text-slate-300 font-mono font-medium rounded-lg hover:border-fastapi hover:text-fastapi transition-all">
+                            Get In Touch
+                        </a>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="flex gap-8 pt-8 border-t border-slate-800 reveal-item delay-600">
+                        <div>
+                            <p class="font-mono text-3xl font-bold text-fastapi">3+</p>
+                            <p class="text-sm text-slate-500">Years Coding</p>
+                        </div>
+                        <div>
+                            <p class="font-mono text-3xl font-bold text-django">15+</p>
+                            <p class="text-sm text-slate-500">Projects Built</p>
+                        </div>
+                        <div>
+                            <p class="font-mono text-3xl font-bold text-restapi">RESTful</p>
+                            <p class="text-sm text-slate-500">API Design</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Terminal -->
+                <div class="reveal-right delay-400">
+                    <div class="terminal rounded-xl overflow-hidden">
+                        <div class="terminal-header px-4 py-3 flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="ml-4 text-xs text-slate-500 font-mono">tshine@backend:~</span>
+                        </div>
+                        <div class="p-6 font-mono text-sm space-y-2">
+                            <div class="text-slate-500">$ <span class="text-green-400">python</span> <span class="text-blue-400">--version</span></div>
+                            <div class="text-white">Python 3.11.4</div>
+                            
+                            <div class="text-slate-500 mt-4">$ <span class="text-green-400">pip</span> <span class="text-blue-400">list</span> | <span class="text-green-400">grep</span> <span class="text-yellow-300">-E</span> <span class="text-red-400">"fastapi|django|flask"</span></div>
+                            <div class="text-white">Django          5.0.1</div>
+                            <div class="text-white">FastAPI         0.104.1</div>
+                            <div class="text-white">Flask           3.0.0</div>
+                            
+                            <div class="text-slate-500 mt-4">$ <span class="text-green-400">psql</span> <span class="text-blue-400">--version</span></div>
+                            <div class="text-white">psql (PostgreSQL) 16.1</div>
+                            
+                            <div class="text-slate-500 mt-4">$ <span class="text-green-400">echo</span> <span class="text-yellow-300">"Hello, I'm T SHINE"</span></div>
+                            <div class="text-fastapi typing-cursor">Hello, I'm T SHINE</div>
+                            
+                            <div class="text-slate-500 mt-2 animate-pulse">_</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Code Visualization -->
+                <div class="reveal-left order-2 lg:order-1">
+                    <div class="code-block rounded-xl p-6 shadow-2xl">
+                        <div class="flex items-center gap-2 mb-4 text-xs text-slate-500">
+                            <i data-lucide="file-code" class="w-5 h-5   "></i>
+                            <span>about_me.py</span>
+                        </div>
+                        <pre class="font-mono text-sm overflow-x-auto">
+<code class="text-purple-400">class</code> <code class="text-yellow-300">BackendDeveloper</code>:
+    <code class="text-blue-400">def</code> <code class="text-green-400">__init__</code>(<code class="text-orange-400">self</code>):
+        <code class="text-orange-400">self</code>.name = <code class="text-green-300">"Temitope Olawuyi"</code>
+        <code class="text-orange-400">self</code>.nickname = <code class="text-green-300">"T SHINE"</code>
+        <code class="text-orange-400">self</code>.email = <code class="text-green-300">"Tshine311@gmail.com"</code>
+        <code class="text-orange-400">self</code>.role = <code class="text-green-300">"Backend Developer"</code>
+        <code class="text-orange-400">self</code>.location = <code class="text-green-300">"Available Remote"</code>
+    
+    <code class="text-blue-400">def</code> <code class="text-green-400">get_skills</code>(<code class="text-orange-400">self</code>):
+        <code class="text-blue-400">return</code> {
+            <code class="text-green-300">"languages"</code>: [<code class="text-green-300">"Python"</code>, <code class="text-green-300">"JavaScript"</code>, <code class="text-green-300">"PostgreSQL"</code>],
+            <code class="text-green-300">"frameworks"</code>: [<code class="text-green-300">"FastAPI"</code>, <code class="text-green-300">"Django"</code>, <code class="text-green-300">"Flask"</code>],
+            <code class="text-green-300">"apis"</code>: [<code class="text-green-300">"REST API"</code>,</code>],
+            <code class="text-green-300">"databases"</code>: [<code class="text-green-300">"PostgreSQL"</code>, <code class="text-green-300">"SQLite"</code>, <code class="text-green-300">"Firebase"</code>],
+            <code class="text-green-300">"tools"</code>: [<code class="text-green-300">"Git & GitHub"</code>, <code class="text-green-300">"Render"</code>, <code class="text-green-300">"Windows"</code>]
+        }
+    
+    <code class="text-blue-400">def</code> <code class="text-green-400">say_hi</code>(<code class="text-orange-400">self</code>):
+        <code class="text-blue-400">print</code>(<code class="text-green-300">f"Hello! I'm {self.nickname}"</code>)
+        <code class="text-blue-400">print</code>(<code class="text-green-300">"Let's build something amazing!"</code>)
+
+<code class="text-slate-500"># Initialize</code>
+t_shine = <code class="text-yellow-300">BackendDeveloper</code>()
+t_shine.say_hi()</code></pre>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="space-y-6 order-1 lg:order-2">
+                    <div class="reveal-item">
+                        <span class="text-fastapi font-mono text-sm tracking-wider md:text-2xl">ABOUT ME</span>
+                    </div>
+                    
+                    <h2 class="font-mono text-3xl md:text-4xl font-bold text-white reveal-item delay-100">
+                        Backend Developer with<br>
+                        <span class="text-fastapi">Python Expertise</span>
+                    </h2>
+                    
+                    <div class="space-y-4 text-slate-400 leading-relaxed">
+                        <p class="reveal-item delay-200">
+                            I'm Temitope Olawuyi, known as <strong class="text-white">"T SHINE"</strong> in the dev community. I'm a passionate backend developer specializing in building robust server-side applications and RESTful APIs.
+                        </p>
+                        <p class="reveal-item delay-300">
+                            While I have some experience with JavaScript for frontend integration, my true strength lies in <strong class="text-fastapi">Python</strong> ecosystem. I love working with <strong class="text-fastapi">FastAPI</strong> for high-performance APIs, <strong class="text-django">Django</strong> for large-scale applications, and <strong class="text-slate-300">Flask</strong> for lightweight services.
+                        </p>
+                        <p class="reveal-item delay-400">
+                            I specialize in designing and implementing <strong class="text-restapi">REST APIs</strong> with proper authentication, documentation, and versioning. Database design and optimization with <strong class="text-postgres">PostgreSQL</strong> and <strong class="text-sql">SQL</strong> is where I shine.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 pt-6 reveal-item delay-500">
+                        <div class="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+                            <div class="w-10 h-10 bg-fastapi/20 rounded-lg flex items-center justify-center">
+                                <i data-lucide="zap" class="w-5 h-5 text-fastapi"></i>
+                            </div>
+                            <div>
+                                <p class="font-mono text-sm text-white">FastAPI Expert</p>
+                                <p class="text-xs text-slate-500">High Performance APIs</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+                            <div class="w-10 h-10 bg-restapi/20 rounded-lg flex items-center justify-center">
+                                <i data-lucide="network" class="w-5 h-5 text-restapi"></i>
+                            </div>
+                            <div>
+                                <p class="font-mono text-sm text-white">REST API Design</p>
+                                <p class="text-xs text-slate-500">RESTful Architecture</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+                            <div class="w-10 h-10 bg-postgres/20 rounded-lg flex items-center justify-center">
+                                <i data-lucide="database" class="w-5 h-5 text-postgres"></i>
+                            </div>
+                            <div>
+                                <p class="font-mono text-sm text-white">Database Design</p>
+                                <p class="text-xs text-slate-500">PostgreSQL Expert</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+                            <div class="w-10 h-10 bg-django/20 rounded-lg flex items-center justify-center">
+                                <i data-lucide="server" class="w-5 h-5 text-django"></i>
+                            </div>
+                            <div>
+                                <p class="font-mono text-sm text-white">Full Stack</p>
+                                <p class="text-xs text-slate-500">Django & Flask</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech-stack" class="py-24 bg-darker relative overflow-hidden">
+        <!-- Background Decoration -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-fastapi/5 rounded-full filter blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-django/5 rounded-full filter blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-fastapi font-mono text-sm tracking-wider reveal-item">TECHNOLOGIES</span>
+                <h2 class="font-mono text-3xl md:text-5xl font-bold text-white mt-4 mb-6 reveal-item delay-100">
+                    My Tech Stack
+                </h2>
+                <p class="text-slate-400 max-w-2xl mx-auto reveal-item delay-200">
+                    I specialize in Python-based backend technologies, REST API development, and database management.
+                </p>
+            </div>
+
+            <!-- Primary Technologies -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <!-- FastAPI -->
+                <div class="tech-card bg-slate-800/50 border border-slate-700 rounded-xl p-6 reveal-scale delay-100 group">
+                    <div class="w-16 h-16 bg-fastapi/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <span class="font-mono text-2xl font-bold text-fastapi">Fa</span>
+                    </div>
+                    <h3 class="font-mono text-xl font-bold text-white mb-2">FastAPI</h3>
+                    <p class="text-sm text-slate-400 mb-4">Modern, fast web framework for building APIs with Python</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-500">Proficiency</span>
+                            <span class="text-fastapi">Advanced</span>
+                        </div>
+                        <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                            <div class="skill-progress h-full bg-fastapi rounded-full" data-width="85"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Django -->
+                <div class="tech-card bg-slate-800/50 border border-slate-700 rounded-xl p-6 reveal-scale delay-200 group">
+                    <div class="w-16 h-16 bg-django/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <span class="font-mono text-2xl font-bold text-django">Dj</span>
+                    </div>
+                    <h3 class="font-mono text-xl font-bold text-white mb-2">Django</h3>
+                    <p class="text-sm text-slate-400 mb-4">Full-stack web framework for complex applications</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-500">Proficiency</span>
+                            <span class="text-django">Advanced</span>
+                        </div>
+                        <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                            <div class="skill-progress h-full bg-django rounded-full" data-width="85"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flask -->
+                <div class="tech-card bg-slate-800/50 border border-slate-700 rounded-xl p-6 reveal-scale delay-300 group">
+                    <div class="w-16 h-16 bg-slate-700 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="flask-conical" class="w-8 h-8 text-slate-300"></i>
+                    </div>
+                    <h3 class="font-mono text-xl font-bold text-white mb-2">Flask</h3>
+                    <p class="text-sm text-slate-400 mb-4">Micro framework for lightweight APIs and services</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-500">Proficiency</span>
+                            <span class="text-slate-300">Advanced</span>
+                        </div>
+                        <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                            <div class="skill-progress h-full bg-slate-400 rounded-full" data-width="80"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REST API -->
+                <div class="tech-card bg-slate-800/50 border border-slate-700 rounded-xl p-6 reveal-scale delay-400 group">
+                    <div class="w-16 h-16 bg-restapi/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <span class="font-mono text-xl font-bold text-restapi">REST</span>
+                    </div>
+                    <h3 class="font-mono text-xl font-bold text-white mb-2">REST API</h3>
+                    <p class="text-sm text-slate-400 mb-4">Designing and implementing RESTful architecture</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-500">Proficiency</span>
+                            <span class="text-restapi">Advanced</span>
+                        </div>
+                        <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                            <div class="skill-progress h-full bg-restapi rounded-full" data-width="90"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PostgreSQL -->
+                <div class="tech-card bg-slate-800/50 border border-slate-700 rounded-xl p-6 reveal-scale delay-500 group">
+                    <div class="w-16 h-16 bg-postgres/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <span class="font-mono text-2xl font-bold text-postgres">Pg</span>
+                    </div>
+                    <h3 class="font-mono text-xl font-bold text-white mb-2">PostgreSQL</h3>
+                    <p class="text-sm text-slate-400 mb-4">Advanced open-source relational database</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-500">Proficiency</span>
+                            <span class="text-postgres">Advanced</span>
+                        </div>
+                        <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                            <div class="skill-progress h-full bg-postgres rounded-full" data-width="85"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Python -->
+                <div class="tech-card bg-slate-800/50 border border-slate-700 rounded-xl p-6 reveal-scale delay-600 group">
+                    <div class="w-16 h-16 bg-python/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <span class="font-mono text-3xl font-bold text-python">Py</span>
+                    </div>
+                    <h3 class="font-mono text-xl font-bold text-white mb-2">Python</h3>
+                    <p class="text-sm text-slate-400 mb-4">Primary language for backend development</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-500">Proficiency</span>
+                            <span class="text-python">Advanced</span>
+                        </div>
+                        <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                            <div class="skill-progress h-full bg-python rounded-full" data-width="90"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary Technologies -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- SQL -->
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6 reveal-item delay-700">
+    <div class="flex items-center gap-4 mb-4">
+        <div class="w-12 h-12 bg-postgres/20 rounded-lg flex items-center justify-center">
+            <i data-lucide="database" class="w-6 h-6 text-postgres"></i>
+        </div>
+
+        <div>
+            <h4 class="font-mono font-bold text-white">PostgreSQL</h4>
+            <p class="text-xs text-slate-500">Relational Database</p>
+        </div>
+    </div>
+
+    <ul class="space-y-2 text-sm text-slate-400">
+
+        <li class="flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-postgres"></i>
+            Database Design
+        </li>
+
+        <li class="flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-postgres"></i>
+            SQL Queries
+        </li>
+
+        <li class="flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-postgres"></i>
+            CRUD Operations
+        </li>
+
+    </ul>
+</div>
+
+                <!-- JavaScript -->
+<div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6 reveal-item delay-800">
+    <div class="flex items-center gap-4 mb-4">
+        <div class="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center">
+            <span class="font-mono font-bold text-yellow-400">JS</span>
+        </div>
+        <div>
+            <h4 class="font-mono font-bold text-white">JavaScript</h4>
+            <p class="text-xs text-slate-500">Frontend Development</p>
+        </div>
+    </div>
+
+    <ul class="space-y-2 text-sm text-slate-400">
+        <li class="flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-yellow-500"></i>
+            DOM Manipulation
+        </li>
+
+        <li class="flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-yellow-500"></i>
+            Fetch API (AJAX)
+        </li>
+
+        <li class="flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-yellow-500"></i>
+            ES6+ JavaScript
+        </li>
+    </ul>
+</div>
+                <!-- Tools -->
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6 reveal-item delay-800">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center">
+                            <i data-lucide="wrench" class="w-6 h-6 text-slate-300"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-mono font-bold text-white">Dev Tools</h4>
+                            <p class="text-xs text-slate-500">Development Environment</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-slate-300"></i>
+                            Git & GitHub
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-slate-300"></i>
+                            Render Deployment
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-slate-300"></i>
+                            Windows
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-fastapi font-mono text-sm tracking-wider reveal-item">PORTFOLIO</span>
+                <h2 class="font-mono text-3xl md:text-5xl font-bold text-white mt-4 mb-6 reveal-item delay-100">
+                    Featured Projects
+                </h2>
+                <p class="text-slate-400 max-w-2xl mx-auto reveal-item delay-200">
+                    Backend-focused projects showcasing FastAPI, Django, Flask, REST APIs, and database expertise.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Project 1: FastAPI -->
+                <div class="project-card bg-slate-800/50 border border-slate-700 rounded-xl overflow-hidden reveal-item delay-200 group">
+
+    <div class="h-48 bg-gradient-to-br from-fastapi/20 to-python/20 flex items-center justify-center relative overflow-hidden">
+
+        <i data-lucide="notebook-pen"
+            class="w-16 h-16 text-fastapi opacity-50 group-hover:scale-110 transition-transform"></i>
+
+    </div>
+
+    <div class="p-6">
+
+        <div class="flex gap-2 mb-3">
+
+            <span class="px-3 py-1 bg-python/20 text-python rounded-full text-xs font-mono">
+                Django
+            </span>
+
+            <span class="px-3 py-1 bg-postgres/20 text-postgres rounded-full text-xs font-mono">
+                PostgreSQL
+            </span>
+
+        </div>
+
+        <h3 class="font-mono text-xl font-bold text-white mb-2">
+            Notes App
+        </h3>
+
+        <p class="text-slate-400 text-sm mb-4">
+            A note-taking application that allows users to create, edit, update, and manage personal notes securely with authentication.
+        </p>
+
+        <div class="flex gap-3">
+
+            <a href="https://notes-project-xfbl.onrender.com"
+                target="_blank"
+                class="text-fastapi hover:text-white text-sm font-mono flex items-center gap-1 transition-colors">
+
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+                Live Demo
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+                <!-- Project 2: Django -->
+                <div class="project-card bg-slate-800/50 border border-slate-700 rounded-xl overflow-hidden reveal-item delay-100 group">
+    <div class="h-48 bg-gradient-to-br from-python/20 to-django/20 flex items-center justify-center relative overflow-hidden">
+        <i data-lucide="book-open" class="w-16 h-16 text-python opacity-50 group-hover:scale-110 transition-transform"></i>
+    </div>
+
+    <div class="p-6">
+
+        <div class="flex gap-2 mb-3">
+            <span class="px-3 py-1 bg-python/20 text-python rounded-full text-xs font-mono">
+                Django
+            </span>
+
+            <span class="px-3 py-1 bg-postgres/20 text-postgres rounded-full text-xs font-mono">
+                PostgreSQL
+            </span>
+
+            <span class="px-3 py-1 bg-restapi/20 text-restapi rounded-full text-xs font-mono">
+                REST API
+            </span>
+        </div>
+
+        <h3 class="font-mono text-xl font-bold text-white mb-2">
+            Django Blog
+        </h3>
+
+        <p class="text-slate-400 text-sm mb-4">
+            A full-featured blog application with authentication, CRUD operations, PostgreSQL database, and responsive UI. Deployed on Render.
+        </p>
+
+        <div class="flex gap-3">
+
+            <a href="https://tshine-dev-blog.onrender.com"
+                target="_blank"
+                class="text-fastapi hover:text-white text-sm font-mono flex items-center gap-1 transition-colors">
+
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+                Live Demo
+
+            </a>
+
+        </div>
+
+    </div>
+</div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-darker relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-fastapi font-mono text-sm tracking-wider reveal-item">CONTACT</span>
+                <h2 class="font-mono text-3xl md:text-5xl font-bold text-white mt-4 mb-6 reveal-item delay-100">
+                    Let's Work Together
+                </h2>
+                <p class="text-slate-400 reveal-item delay-200">
+                    Have a project in mind? I'm available for freelance work and collaborations.
+                </p>
+            </div>
+
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 md:p-12 reveal-scale delay-300">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Contact Info -->
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="font-mono text-xl font-bold text-white mb-6">Contact Information</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4 p-4 bg-slate-900/50 rounded-lg border border-slate-700 hover:border-django transition-all group">
+            <div class="w-12 h-12 bg-django/20 rounded-lg flex items-center justify-center">
+                       <i data-lucide="user" class="w-5 h-5 text-django"></i>
+                            </div>
+                             <div>
+        <p class="text-xs text-slate-500">Name</p>
+        <p class="font-mono text-white group-hover:text-green-300 transition-colors">
+    Temitope Olawuyi
+</p>
+    </div>
+</div>
+
+                                <a href="mailto:temitopesunday005@gmail.com"
+   class="flex items-center gap-4 p-4 bg-slate-900/50 rounded-lg border border-slate-700 hover:border-python transition-all group">
+
+    <div class="w-12 h-12 bg-python/20 rounded-lg flex items-center justify-center">
+        <i data-lucide="mail" class="w-6 h-6" style="color:#EA4335;"></i>
+    </div>
+
+    <div>
+        <p class="text-xs text-slate-500">Email</p>
+        <p class="font-mono text-white group-hover:text-python transition-colors">
+            temitopesunday005@gmail.com
+        </p>
+    </div>
+</a>
+
+                                <a href="https://wa.me/2348108607409" target="_blank" rel="noopener" class="flex items-center gap-4 p-4 bg-slate-900/50 rounded-lg border border-slate-700 hover:border-[#25D366] transition-all group">
+                                    <div class="w-12 h-12 bg-[#25D366]/20 rounded-lg flex items-center justify-center">
+                                        <i data-lucide="message-circle" class="w-6 h-6" style="color:#25D366;"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-slate-500">WhatsApp</p>
+                                        <p class="font-mono text-white group-hover:text-[#25D366] transition-colors">+234 810 860 7409</p>
+                                    </div>
+                                </a>
+
+                                <a href="https://www.linkedin.com/in/temitopeolawuyi-dev" target="_blank" rel="noopener" class="flex items-center gap-4 p-4 bg-slate-900/50 rounded-lg border border-slate-700 hover:border-[#0A66C2] transition-all group">
+                                    <div class="w-12 h-12 bg-[#0A66C2]/20 rounded-lg flex items-center justify-center">
+                                        <i class="fa-brands fa-linkedin text-[#0A66C2] text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-slate-500">LinkedIn</p>
+                                        <p class="font-mono text-white group-hover:text-[#0A66C2] transition-colors">temitopeolawuyi-dev</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-mono text-sm font-bold text-white mb-4">Connect With Me</h4>
+                            <div class="flex gap-4">
+                                <a href="https://wa.me/2348108607409?text=Hi%20Temitope%2C%20I%20saw%20your%20portfolio!" target="_blank" rel="noopener" title="Message me on WhatsApp"
+                                   style="width:48px;height:48px;background-color:rgba(37,211,102,0.15);border:1px solid #25D366;"
+                                   class="rounded-lg flex items-center justify-center transition-transform hover:scale-110 hover:shadow-lg">
+                                    <i data-lucide="message-circle" class="w-6 h-6" style="color:#25D366;"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/temitopeolawuyi-dev" target="_blank" rel="noopener" title="View my LinkedIn"
+                                   style="width:48px;height:48px;background-color:rgba(10,102,194,0.15);border:1px solid #0A66C2;"
+                                   class="rounded-lg flex items-center justify-center transition-transform hover:scale-110 hover:shadow-lg">
+                                    <i class="fa-brands fa-linkedin text-[#0A66C2] text-xl"></i>
+                                </a>
+                                <a href="mailto:temitopesunday005@gmail.com"
+   title="Send me an email"
+   style="width:48px;height:48px;background-color:rgba(234,67,53,0.15);border:1px solid #EA4335;"
+   class="rounded-lg flex items-center justify-center transition-transform hover:scale-110 hover:shadow-lg">
+
+    <i class="fa-solid fa-envelope text-[#EA4335] text-xl"></i>
+
+</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form - Using Formspree -->
+                    <div>
+                        <!-- Success Message -->
+                        <div id="form-success" class="form-success flex-col items-center justify-center h-full text-center p-6 bg-green-500/10 border border-green-500/30 rounded-xl">
+                            <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mb-4">
+                                <i data-lucide="check-circle" class="w-8 h-8 text-green-500"></i>
+                            </div>
+                            <h3 class="font-mono text-xl font-bold text-white mb-2">Message Sent!</h3>
+                            <p class="text-slate-400 text-sm">Thanks for reaching out. I'll get back to you at Tshine311@gmail.com soon.</p>
+                        </div>
+
+                        <!-- Form -->
+                        <form id="contact-form" action="https://formspree.io/f/mqevgrka" method="POST" class="space-y-6">
+                            <div class="reveal-item delay-400">
+                                <label class="block text-sm font-mono text-slate-400 mb-2">Name</label>
+                                <input type="text" name="name" required class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white font-mono focus:border-fastapi focus:outline-none transition-colors" placeholder="Your Name">
+                            </div>
+                            
+                            <div class="reveal-item delay-500">
+                                <label class="block text-sm font-mono text-slate-400 mb-2">Email</label>
+                                <input type="email" name="email"  required class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white font-mono focus:border-fastapi focus:outline-none transition-colors" placeholder="your@email.com">
+                            </div>
+                            
+                            <div class="reveal-item delay-600">
+                                <label class="block text-sm font-mono text-slate-400 mb-2">Subject</label>
+                                <select name="subject" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white font-mono focus:border-fastapi focus:outline-none transition-colors">
+                                    <option value="Project Inquiry">Project Inquiry</option>
+                                    <option value="Freelance Opportunity">Freelance Opportunity</option>
+                                    <option value="Collaboration">Collaboration</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="reveal-item delay-700">
+                                <label class="block text-sm font-mono text-slate-400 mb-2">Message</label>
+                                <textarea name="message" rows="4" required class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white font-mono focus:border-fastapi focus:outline-none transition-colors resize-none" placeholder="Tell me about your project..."></textarea>
+                            </div>
+                            
+                            <!-- Honeypot field to prevent spam -->
+                            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">
+                            
+                            <button type="submit" id="submit-btn" class="w-full reveal-item delay-800 py-4 bg-fastapi text-white font-mono font-medium rounded-lg hover:bg-opacity-90 transition-all flex items-center justify-center gap-2 group">
+                                <span>Send Message</span>
+                                <i data-lucide="send" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </form>
+
+                        <p class="text-xs text-slate-500 font-mono text-center mt-4">
+                            Prefer instant reply? <a href="https://wa.me/2348108607409" target="_blank" rel="noopener" class="text-[#25D366] hover:underline">Message me on WhatsApp</a> instead.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- Footer - Fixed Alignment -->
+<footer class="bg-dark border-t border-slate-800 py-6 md:py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Main footer content -->
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
+            <!-- Left section - Copyright -->
+            <div class="flex flex-col xs:flex-row items-center gap-2 xs:gap-3 font-mono text-slate-400 text-center xs:text-left">
+                <span class="text-fastapi font-bold text-base sm:text-lg">T_SHINE</span>
+                <span class="hidden xs:inline text-slate-600">|</span>
+                <span class="text-xs sm:text-sm text-slate-500">© 2026 Temitope Olawuyi</span>
+            </div>
+            
+            <!-- Right section - Built with tags -->
+            <div class="flex flex-wrap justify-center items-center gap-2 sm:gap-3 md:gap-4">
+                <span class="text-xs sm:text-sm text-slate-500 font-mono whitespace-nowrap">Built with:</span>
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-3">
+                    <span class="text-xs sm:text-sm font-mono text-fastapi bg-fastapi/10 px-2 py-1 rounded-md">FastAPI</span>
+                    <span class="text-xs sm:text-sm font-mono text-django bg-django/10 px-2 py-1 rounded-md">Django</span>
+                    <span class="text-xs sm:text-sm font-mono text-restapi bg-restapi/10 px-2 py-1 rounded-md">REST API</span>
+                    <span class="text-xs sm:text-sm font-mono text-postgres bg-postgres/10 px-2 py-1 rounded-md">PostgreSQL</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile-only decorative line (optional) -->
+        <div class="mt-4 text-center md:hidden">
+            <p class="text-xs text-slate-700 font-mono">Backend Developer • Python Specialist</p>
+        </div>
+    </div>
+</footer>
+
+    <!-- Floating WhatsApp Button (always visible, direct message) -->
+    <a href="https://wa.me/2348108607409?text=Hi%20Temitope%2C%20I%20saw%20your%20portfolio%20and%20wanted%20to%20reach%20out!" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Message me on WhatsApp">
+        <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
+        <span class="tooltip">Message me on WhatsApp</span>
+    </a>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</script>
+</body>
+</html>
