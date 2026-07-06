@@ -22,7 +22,7 @@ A modern portfolio showcasing my backend development projects, technical skills,
 
 ## Live Demo
 
-https://your-portfolio-link.com
+https://t-shine-dev.github.io/backend-portfolio/
 
 ## Contact
 
