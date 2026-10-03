@@ -627,7 +627,7 @@ t_shine.say_hi()</code></pre>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-24 bg-dark">
+<section id="projects" class="py-24 bg-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-fastapi font-mono text-sm tracking-wider reveal-item">PORTFOLIO</span>
@@ -639,101 +639,76 @@ t_shine.say_hi()</code></pre>
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <!-- Project 1: FastAPI -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <!-- Project 1: Notes App -->
                 <div class="project-card bg-slate-800/50 border border-slate-700 rounded-xl overflow-hidden reveal-item delay-200 group">
+                    <div class="h-48 bg-gradient-to-br from-fastapi/20 to-python/20 flex items-center justify-center relative overflow-hidden">
+                        <i data-lucide="notebook-pen" class="w-16 h-16 text-fastapi opacity-50 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="px-3 py-1 bg-python/20 text-python rounded-full text-xs font-mono">Django</span>
+                            <span class="px-3 py-1 bg-postgres/20 text-postgres rounded-full text-xs font-mono">PostgreSQL</span>
+                        </div>
+                        <h3 class="font-mono text-xl font-bold text-white mb-2">Notes App</h3>
+                        <p class="text-slate-400 text-sm mb-4">
+                            A note-taking application that allows users to create, edit, update, and manage personal notes securely with authentication.
+                        </p>
+                        <div class="flex gap-3">
+                            <a href="https://notes-project-xfbl.onrender.com" target="_blank" class="text-fastapi hover:text-white text-sm font-mono flex items-center gap-1 transition-colors">
+                                <i data-lucide="external-link" class="w-4 h-4"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="h-48 bg-gradient-to-br from-fastapi/20 to-python/20 flex items-center justify-center relative overflow-hidden">
-
-        <i data-lucide="notebook-pen"
-            class="w-16 h-16 text-fastapi opacity-50 group-hover:scale-110 transition-transform"></i>
-
-    </div>
-
-    <div class="p-6">
-
-        <div class="flex gap-2 mb-3">
-
-            <span class="px-3 py-1 bg-python/20 text-python rounded-full text-xs font-mono">
-                Django
-            </span>
-
-            <span class="px-3 py-1 bg-postgres/20 text-postgres rounded-full text-xs font-mono">
-                PostgreSQL
-            </span>
-
-        </div>
-
-        <h3 class="font-mono text-xl font-bold text-white mb-2">
-            Notes App
-        </h3>
-
-        <p class="text-slate-400 text-sm mb-4">
-            A note-taking application that allows users to create, edit, update, and manage personal notes securely with authentication.
-        </p>
-
-        <div class="flex gap-3">
-
-            <a href="https://notes-project-xfbl.onrender.com"
-                target="_blank"
-                class="text-fastapi hover:text-white text-sm font-mono flex items-center gap-1 transition-colors">
-
-                <i data-lucide="external-link" class="w-4 h-4"></i>
-                Live Demo
-
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-                <!-- Project 2: Django -->
+                <!-- Project 2: Django Blog -->
                 <div class="project-card bg-slate-800/50 border border-slate-700 rounded-xl overflow-hidden reveal-item delay-100 group">
-    <div class="h-48 bg-gradient-to-br from-python/20 to-django/20 flex items-center justify-center relative overflow-hidden">
-        <i data-lucide="book-open" class="w-16 h-16 text-python opacity-50 group-hover:scale-110 transition-transform"></i>
-    </div>
+                    <div class="h-48 bg-gradient-to-br from-python/20 to-django/20 flex items-center justify-center relative overflow-hidden">
+                        <i data-lucide="book-open" class="w-16 h-16 text-python opacity-50 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="px-3 py-1 bg-python/20 text-python rounded-full text-xs font-mono">Django</span>
+                            <span class="px-3 py-1 bg-postgres/20 text-postgres rounded-full text-xs font-mono">PostgreSQL</span>
+                            <span class="px-3 py-1 bg-restapi/20 text-restapi rounded-full text-xs font-mono">REST API</span>
+                        </div>
+                        <h3 class="font-mono text-xl font-bold text-white mb-2">Django Blog</h3>
+                        <p class="text-slate-400 text-sm mb-4">
+                            A full-featured blog application with authentication, CRUD operations, PostgreSQL database, and responsive UI. Deployed on Render.
+                        </p>
+                        <div class="flex gap-3">
+                            <a href="https://tshine-dev-blog.onrender.com" target="_blank" class="text-fastapi hover:text-white text-sm font-mono flex items-center gap-1 transition-colors">
+                                <i data-lucide="external-link" class="w-4 h-4"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="p-6">
-
-        <div class="flex gap-2 mb-3">
-            <span class="px-3 py-1 bg-python/20 text-python rounded-full text-xs font-mono">
-                Django
-            </span>
-
-            <span class="px-3 py-1 bg-postgres/20 text-postgres rounded-full text-xs font-mono">
-                PostgreSQL
-            </span>
-
-            <span class="px-3 py-1 bg-restapi/20 text-restapi rounded-full text-xs font-mono">
-                REST API
-            </span>
+                <!-- Project 3: ERINAYOMI E-Commerce Platform -->
+                <div class="project-card bg-slate-800/50 border border-slate-700 rounded-xl overflow-hidden reveal-item delay-300 group">
+                    <div class="h-48 bg-gradient-to-br from-python/30 via-django/20 to-fastapi/30 flex items-center justify-center relative overflow-hidden">
+                        <i data-lucide="shopping-bag" class="w-16 h-16 text-fastapi group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="px-3 py-1 bg-python/20 text-python rounded-full text-xs font-mono">Django</span>
+                            <span class="px-3 py-1 bg-postgres/20 text-postgres rounded-full text-xs font-mono">PostgreSQL</span>
+                            <span class="px-3 py-1 bg-fastapi/20 text-fastapi rounded-full text-xs font-mono">Paystack</span>
+                        </div>
+                        <h3 class="font-mono text-xl font-bold text-white mb-2">ERINAYOMI Store</h3>
+                        <p class="text-slate-400 text-sm mb-4">
+                            A full-stack e-commerce platform featuring live search, cart/wishlist management, Paystack payments, and an admin dashboard.
+                        </p>
+                        <div class="flex gap-3">
+                            <a href="https://erinayomi.onrender.com" target="_blank" class="text-fastapi hover:text-white text-sm font-mono flex items-center gap-1 transition-colors">
+                                <i data-lucide="external-link" class="w-4 h-4"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <h3 class="font-mono text-xl font-bold text-white mb-2">
-            Django Blog
-        </h3>
-
-        <p class="text-slate-400 text-sm mb-4">
-            A full-featured blog application with authentication, CRUD operations, PostgreSQL database, and responsive UI. Deployed on Render.
-        </p>
-
-        <div class="flex gap-3">
-
-            <a href="https://temitopeolawuyi.pythonanywhere.com/"
-                target="_blank"
-                class="text-fastapi hover:text-white text-sm font-mono flex items-center gap-1 transition-colors">
-
-                <i data-lucide="external-link" class="w-4 h-4"></i>
-                Live Demo
-
-            </a>
-
-        </div>
-
-    </div>
-</div>
     </section>
 
     <!-- Contact Section -->
